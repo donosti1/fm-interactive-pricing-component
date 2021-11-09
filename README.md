@@ -6,7 +6,7 @@ This is a solution to the [Interactive pricing component challenge on Frontend M
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-<!--   - [Screenshot](#screenshot) -->
+  - [Screenshot](#screenshot)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -23,21 +23,23 @@ Users should be able to:
 - View the optimal layout for the site depending on their device's screen size
 - See hover states for all interactive elements on the page
 
-<!-- ### Screenshot
+### Screenshot
 
 ![](./screenshot.jpg)
- -->
+
 ### Links
 
 - Solution URL: [https://github.com/donosti1/fm-interactive-pricing-component](https://github.com/donosti1/fm-interactive-pricing-component)
-<!-- - Live Site URL: [https://fm-interactive-pricing-component-donosti1.vercel.app/](https://fm-interactive-pricing-component-donosti1.vercel.app/)
- -->
+- Live Site URL: [https://fm-interactive-pricing-component-donosti1.vercel.app/](https://fm-interactive-pricing-component-donosti1.vercel.app/)
+
 ## My process
 
 ### Built with
 
 - [React](https://reactjs.org/) - JS library
 - [Chakra UI](https://chakra-ui.com/) - React Component library
+- FlexBox & GridCSS
+- Responsive Design
 
 ## Author
 
