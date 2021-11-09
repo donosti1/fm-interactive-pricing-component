@@ -1,250 +1,151 @@
 import React from "react";
 import {
   Button,
-  Icon,
+  Image,
   Slider,
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
   Stack,
   Switch,
+  Tag,
   Text,
   SimpleGrid,
   Divider,
+  TagLabel,
 } from "@chakra-ui/react";
 import {FaCheck} from "react-icons/fa";
 
 const App: React.FC = () => {
-  const [selectedYearly, setSelectedYearly] = React.useState(true);
+  const [selectedYearly, setSelectedYearly] = React.useState(false);
   const [views, SetViews] = React.useState(100);
-
-  const plans = [
+  const price = views != 0 ? selectedYearly ? Math.floor(views/6)*12*.75: Math.floor(views/6) : 1;
+  const features = [
     {
       id: 0,
-      title: "basic",
-      label: "Basic",
-      monthly: "$19.99",
-      anually: "$199.99",
-      storage: "500 GB Storage",
-      users: "2 Users Allowed",
-      send: "Send up to 3 GB",
+      label: "Unlimited websites",
     },
     {
       id: 1,
-      title: "professional",
-      label: "Professional",
-      monthly: "$24.99",
-      anually: "$249.99",
-      storage: "1 TB Storage",
-      users: "5 Users Allowed",
-      send: "Send up to 10 GB",
+      label: "100% data ownership",
     },
     {
       id: 2,
-      title: "master",
-      label: "Master",
-      monthly: "$39.99",
-      anually: "$399.99",
-      storage: "2 TB Storage",
-      users: "10 Users Allowed",
-      send: "Send up to 20 GB",
+      label: "Email reports",
     },
   ];
-  const PlanLabel = (props: any) => {
-    return (
-      <Text color={props.position == "center" ? "white" : "primary.600"} fontSize="sm">
-        {props.children}
-      </Text>
-    );
-  };
-
-  const PlanFeature = (props: any) => {
-    return (
-      <Text
-        borderTop={1}
-        borderTopColor="primary.500"
-        borderTopStyle="solid"
-        color={props.position == "center" ? "white" : "primary.600"}
-        fontSize="sm"
-        paddingY={3}
-      >
-        {props.children}
-      </Text>
-    );
-  };
-  const PlanFeatureLast = (props: any) => {
-    return (
-      <Text
-        borderBottom={1}
-        borderBottomColor="primary.500"
-        borderBottomStyle="solid"
-        borderTop={1}
-        borderTopColor="primary.500"
-        borderTopStyle="solid"
-        color={props.position == "center" ? "white" : "primary.600"}
-        fontSize="sm"
-        marginBottom={3}
-        paddingY={3}
-      >
-        {props.children}
-      </Text>
-    );
-  };
-  const LearnMoreButton = (props: any) => {
-    return (
-      <Button
-        _hover={{
-          bgColor: "transparent",
-          bgGradient: "linear(to-r,transparent,transparent)",
-          color: props.position != "center" ? "#7674c7" : "white",
-          borderColor: props.position != "center" ? "#7674c7" : "white",
-          borderWidth: 1,
-        }}
-        bgColor={props.position == "center" ? "white" : "transparent"}
-        bgGradient={
-          props.position != "center" ? "linear(to-r,hsl(236, 72%, 79%),hsl(237, 63%, 64%))" : ""
-        }
-        color={props.position != "center" ? "white" : "#7674c7"}
-        fontSize="sm"
-        paddingY={3}
-      >
-        LEARN MORE
-      </Button>
-    );
-  };
-
-  const Card = (props: any) => {
-    return (
-      <>
-        {plans
-          .filter((pl: any) => pl.title == props.plan)
-          .map((sp) => {
-            return (
-              <Stack
-                key={sp.id}
-                backgroundColor="primary.600"
-                bgColor={props.position != "center" ? "white" : "transparent"}
-                bgGradient={
-                  props.position == "center"
-                    ? "linear(to-r,hsl(236, 72%, 79%),hsl(237, 63%, 64%))"
-                    : ""
-                }
-                borderLeftRadius={props.position == "right" ? ["xl", 0] : "xl"}
-                borderRightRadius={props.position == "left" ? ["xl", 0] : "xl"}
-                color={props.position == "center" ? "white" : "primary.700"}
-                paddingX={8}
-                paddingY={props.position == "center" ? 8 : 4}
-                spacing={0}
-                width={72}
-              >
-                <PlanLabel position={props.position}>{sp.label}</PlanLabel>
-                <Text fontSize="5xl" paddingY={4}>
-                  {selectedYearly ? sp.monthly : sp.anually}
-                </Text>
-                <PlanFeature position={props.position}>{sp.storage}</PlanFeature>
-                <PlanFeature position={props.position}>{sp.users}</PlanFeature>
-                <PlanFeatureLast position={props.position}>{sp.send}</PlanFeatureLast>
-                <Stack paddingTop={6}>
-                  <LearnMoreButton position={props.position} />
-                </Stack>
-              </Stack>
-            );
-          })}
-      </>
-    );
-  };
-
+  
   return (
     <Stack
       backgroundColor="secondary.400"
       backgroundImage={["url('/assets/pattern-circles.svg'),url('/assets/bg-pattern.svg')"]}
-      backgroundPosition={["50% 10% , 50% 0%;", "50% 10% , 50% 0%;"]}
+      backgroundPosition={["50% 10%, 0% -20%;", "50% 10%, 50% 0%;"]}
       backgroundRepeat="no-repeat, no-repeat"
+      backgroundSize={["auto, auto","auto, contain"]}
       flex={1}
       height={["auto", "100vh"]}
       justifyContent="center"
-      paddingY={[20, 18]}
+      paddingTop={[20, 18]}
+      role="main"
     >
       <Stack alignItems="center" alignSelf="center" justifyContent="center" textAlign="center">
-        <Stack marginBottom={16}>
-          <Text color="secondary.800" fontSize="4xl">
+        <Stack marginBottom={[8,16]}>
+          <Text color="secondary.800" fontWeight="800" fontSize={["xl","4xl"]} as="h1">
             Simple, traffic-based pricing
           </Text>
-          <Text color="secondary.700" fontSize="lg">
-            Sign-up for our 30-day trial. No credit card required.
+          <Text color="secondary.700" fontSize={["md","lg"]}>
+            Sign-up for our 30-day trial. <Divider borderWidth={0} display={["block","none"]} />No credit card required.
           </Text>
         </Stack>
 
-        <Stack backgroundColor="white" borderRadius="xl" minWidth="container.xs" padding={8}>
-          <Stack alignItems="center" direction="row" justifyContent="space-between">
-            <Text color="secondary.700" fontSize="sm" fontWeight="800" textTransform="uppercase">
-              {views}K Pageviews
-            </Text>
-            <Stack alignItems="center" direction="row">
-              <Text color="secondary.800" fontSize="4xl" fontWeight="800">
-                $16.00
+        <Stack backgroundColor="white" borderRadius="xl" width={["auto","container.sm" ]}
+              boxShadow="4px 4px 12px 0px rgba(0,0,0,0.1)">
+          <Stack padding={[4,8]}>
+            <Stack alignItems="center" direction={["column","row"]} justifyContent="space-between" paddingBottom={[4,0]}>
+              <Text color="secondary.700" fontSize="sm" fontWeight="800" textTransform="uppercase">
+                {views}K Pageviews
               </Text>
-              <Text color="secondary.700" fontSize="sm" fontWeight="800">
-                {selectedYearly ? "/ year" : "/ month"}
-              </Text>
+              <Stack alignItems="center" direction="row" 
+                display={["none", "flex"]}>
+                <Text color="secondary.800" fontSize={["2xl","4xl"]} fontWeight="800">
+                  ${price.toLocaleString('es-AR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                </Text>
+                <Text color="secondary.700" fontSize="sm" fontWeight="800">
+                  {selectedYearly ? "/ year" : "/ month"}
+                </Text>
+              </Stack>
             </Stack>
-          </Stack>
-          <Slider
-            defaultValue={views}
-            max={300}
-            min={0}
-            step={30}
-            /* onChangeEnd={(val) => SetViews(val)} */
-            onChange={(val) => SetViews(val)}
-          >
-            <SliderTrack bg="red.100">
-              <Stack position="relative" right={10} />
-              <SliderFilledTrack bg="primary.500" />
-            </SliderTrack>
-            <SliderThumb boxSize={6} />
-          </Slider>
-          <SimpleGrid columns={3} spacing={10} templateColumns="120px 1fr 120px">
+            <Slider
+            
+              defaultValue={views}
+              max={300}
+              min={0}
+              step={30}
+              /* onChangeEnd={(val) => SetViews(val)} */
+              onChange={(val:number) => SetViews(val)}
+            >
+              <SliderTrack bg="secondary.500" height={3} borderRadius="lg" >
+                <Stack position="relative" right={10} />
+                <SliderFilledTrack bg="primary.400" />
+              </SliderTrack>
+              <SliderThumb boxSize={10} backgroundColor="primary.500" borderWidth={2} borderColor="#25c8b5" boxShadow={"0px 10px 22px 2px rgba(37,200,181,.8)"} _focus={{bg: "#22aea1", boxShadow: "0px 10px 22px 2px rgba(37,200,181,.8)"}}>
+                <Image alt="slider icon" src="/assets/icon-slider.svg"/>
+              </SliderThumb>
+            </Slider>
+            <Stack alignItems="center" direction="row" display={["flex", "none"]} justifyContent="center" paddingTop={4}>
+                <Text color="secondary.800" fontSize={["2xl","4xl"]} fontWeight="800">
+                  ${price.toLocaleString('es-AR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                </Text>
+                <Text color="secondary.700" fontSize="sm" fontWeight="800">
+                  {selectedYearly ? "/ year" : "/ month"}
+                </Text>
+              </Stack>
+            <SimpleGrid columns={3} paddingTop={[4, 8]} spacing={[2,0]} templateColumns={["1fr 18fr 1fr","150px 1fr 150px"]}>
             <Stack />
             <Stack alignItems="center" direction="row" justifyContent="center">
-              <Text color="secondary.700" fontSize="sm">
+              <Text color="secondary.700" fontSize={["xs","sm"]}>
                 Monthly billing
               </Text>
               <Switch
-                defaultIsChecked
-                colorScheme="blue"
+                colorScheme="toggle"
+                size="md"
+                display={["block", "none"]}
+                onChange={() => setSelectedYearly(!selectedYearly)}
+              />
+              <Switch
+                colorScheme="toggle"
+                display={["none", "block"]}
                 size="lg"
                 onChange={() => setSelectedYearly(!selectedYearly)}
               />
-              <Text color="secondary.700" fontSize="sm">
+              <Text color="secondary.700" fontSize={["xs","sm"]}>
                 Yearly billing
               </Text>
             </Stack>
-            <Stack />
-          </SimpleGrid>
-          <Divider paddingTop={8} />
-          <Stack direction="row">
-            <Stack flex={1}>
-              <Stack alignItems="center" direction="row">
-                <Icon as={FaCheck} height={6} width={6} />
-                <Text fontSize="sm" fontWeight="600">
-                  Unlimited websites
-                </Text>
-              </Stack>
-              <Stack alignItems="center" direction="row">
-                <Icon as={FaCheck} height={6} width={6} />
-                <Text fontSize="sm" fontWeight="600">
-                  100% data ownership
-                </Text>
-              </Stack>
-              <Stack alignItems="center" direction="row">
-                <Icon as={FaCheck} height={6} width={6} />
-                <Text fontSize="sm" fontWeight="600">
-                  Email reports
-                </Text>
-              </Stack>
+            <Stack alignItems="flex-start" justifyContent="center" >
+              <Tag backgroundColor="primary.600" size="md">
+                <TagLabel color="primary.700" fontSize="xs">
+                  <Text display={["none", "block"]}>25% discount</Text>
+                  <Text display={["block", "none"]}>-25%</Text>
+                </TagLabel>
+              </Tag>
             </Stack>
-            <Stack flex={1} justifyContent="center">
-              <Button variant="ghost">Start my trial</Button>
+          </SimpleGrid>
+          </Stack>
+          <Divider marginTop={8} borderWidth={1}/>
+          
+          <Stack direction={["column","row"]} padding={[4,8]} spacing={[8,0]}>
+            <Stack flex={1}>
+              {features.map((item) =><Stack key={item.id} alignItems="center" justifyContent={["center", "flex-start"]} direction="row" spacing={4}>
+                <Image alt="Check" src="/assets/icon-check.svg" height={3} width={3} />
+                <Text color="secondary.700" fontSize={["xs","sm"]} fontWeight="600">
+                  {item.label}
+                </Text>
+              </Stack>)}
+              
+            </Stack>
+            <Stack flex={1} justifyContent="center" >
+              <Button variant="ghost" alignSelf="center" paddingX={14} height={12}>Start my trial</Button>
             </Stack>
           </Stack>
           <Stack />

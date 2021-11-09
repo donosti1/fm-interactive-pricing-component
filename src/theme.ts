@@ -20,9 +20,11 @@ export default extendTheme({
       ...theme.colors.messenger,
       400:"hsl(230, 100%, 99%)",
       500:"hsl(224, 65%, 95%)",
-      600:"hsl(223, 50%, 87%)",
       700:"hsl(225, 20%, 60%)",
       800:"hsl(227, 35%, 25%)",
+    },
+    toggle:{
+      500:"hsl(223, 50%, 87%)",
     },
     success: theme.colors.whatsapp,
     error: theme.colors.red,
@@ -70,9 +72,10 @@ export default extendTheme({
         ghost: ({colorScheme = "secondary"}) => ({
           backgroundColor: `${colorScheme}.800`,
           borderRadius: "3xl",
-          color: "white",
+          color: "primary.800",
           ":hover, :focus": {
-            backgroundColor: `${colorScheme}.100`,
+            backgroundColor: `${colorScheme}.800`,
+            color: "white",
           },
         }),
       },
